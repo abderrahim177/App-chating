@@ -59,7 +59,7 @@ function MainChatView({ onProfileClick }) {
         
         {/* Received Message */}
         <div className="flex gap-2 items-end max-w-[70%]">
-          <div className="bg-white dark:bg-[#1e2738] px-3.5 py-1 rounded-2xl rounded-bl-xs text-xs text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-800/50 shadow-xs dark:shadow-sm leading-relaxed">
+          <div className="bg-white dark:bg-[#1e2738] px-3.5 py-1 rounded-4xl rounded-bl-xs text-xs text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-800/50 shadow-xs dark:shadow-sm leading-relaxed">
             Say My Name...
             <span className="block text-[9px] text-gray-400 dark:text-gray-500 text-right mt-0.5">09:30</span>
           </div>
@@ -67,7 +67,7 @@ function MainChatView({ onProfileClick }) {
 
         {/* Sent Message */}
         <div className="flex gap-2 items-end justify-end ml-auto max-w-[70%]">
-          <div className="bg-blue-600 px-3.5 py-1 rounded-2xl rounded-br-xs text-xs text-white shadow-xs dark:shadow-sm leading-relaxed">
+          <div className="bg-blue-600 px-3.5 py-1 rounded-4xl rounded-br-xs text-xs text-white shadow-xs dark:shadow-sm leading-relaxed">
             Can you please send this in file format?
             <span className="block text-[9px] text-blue-100 dark:text-blue-200 text-right mt-0.5">09:31</span>
           </div>
@@ -75,8 +75,8 @@ function MainChatView({ onProfileClick }) {
         
         {/* Received Image Message */}
         <div className="flex gap-2 items-end max-w-[65%]">
-          <div className="bg-white dark:bg-[#1e2738] p-2 rounded-2xl rounded-bl-xs border border-gray-200 dark:border-gray-800/50 shadow-xs dark:shadow-sm">
-            <div className="bg-slate-50 dark:bg-[#141b29] rounded-xl p-6 flex flex-col items-center justify-center border border-gray-200 dark:border-gray-800/40">
+          <div className="bg-white dark:bg-[#1e2738] p-2 rounded-4xl rounded-bl-xs border border-gray-200 dark:border-gray-800/50 shadow-xs dark:shadow-sm">
+            <div className="bg-slate-50 dark:bg-[#141b29] rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 dark:border-gray-800/40">
               <CiImageOn size={48} className="text-gray-400 dark:text-gray-500 mb-1 cursor-pointer" />
               <span className="text-[11px] text-gray-500 dark:text-gray-400">Abstract_Design.png</span>
             </div>

@@ -1,5 +1,5 @@
 import { BiSearch, BiArchive, BiChevronDown } from 'react-icons/bi';
-
+import AmazanLogo from './AmazanLogo';
 const contactsData = [
   { id: 1, name: 'Kailey', message: 'Say My Name', time: '9:30', status: 'online', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100' },
   { id: 2, name: 'Maryjane', message: 'Check On It', time: '12:02', status: 'offline', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100' },
@@ -11,7 +11,9 @@ function SecondarySidebar() {
     <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors">
       
       {/* Header */}
-      <h2 className="text-lg font-semibold mb-3 px-1 text-gray-900 dark:text-white">Chats</h2>
+      <div className="mb-3 px-1 flex items-center justify-start overflow-hidden">
+        <AmazanLogo className="w-36 h-auto" />
+    </div>
 
       {/* Search Bar */}
       <div className="relative mb-4">
