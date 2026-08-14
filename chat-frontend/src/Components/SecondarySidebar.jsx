@@ -8,23 +8,23 @@ const contactsData = [
 
 function SecondarySidebar() {
   return (
-    <aside className="w-60 bg-[#1e2738] text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-800/60 shrink-0">
+    <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors">
       
       {/* Header */}
-      <h2 className="text-lg font-semibold mb-3 px-1">Chats</h2>
+      <h2 className="text-lg font-semibold mb-3 px-1 text-gray-900 dark:text-white">Chats</h2>
 
       {/* Search Bar */}
       <div className="relative mb-4">
-        <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+        <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" size={16} />
         <input 
           type="text" 
           placeholder="Search..." 
-          className="w-full bg-[#141b29] text-xs text-white rounded-lg py-2 pl-9 pr-3 focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-500"
+          className="w-full bg-white dark:bg-[#141b29] text-xs text-gray-800 dark:text-white rounded-lg py-2 pl-9 pr-3 border border-gray-200 dark:border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400 dark:placeholder-gray-500 shadow-xs dark:shadow-none"
         />
       </div>
 
       {/* Archive */}
-      <div className="flex items-center justify-between text-gray-400 mb-3 px-1 cursor-pointer hover:text-gray-200 transition-colors">
+      <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-3 px-1 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
         <div className="flex items-center gap-2">
           <BiArchive size={16} />
           <span className="text-xs font-medium">Archive</span>
@@ -33,33 +33,35 @@ function SecondarySidebar() {
       </div>
 
       {/* Chats List */}
-     <div className="flex-1 space-y-0.5 overflow-y-auto pr-1">
-  {contactsData.map((contact) => (
-    <div 
-      key={contact.id} 
-      className={`flex items-center gap-2.5 px-2.5 py-1 rounded-lg cursor-pointer transition-colors ${
-        contact.id === 1 ? 'bg-blue-600/10 text-white' : 'hover:bg-[#141b29]/50 text-gray-300'
-      }`}
-    >
-      <div className="relative shrink-0">
-        <img 
-          src={contact.avatar} 
-          alt={contact.name} 
-          className="w-8 h-8 rounded-full object-cover" 
-        />
-        <div className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-[#1e2738] ${contact.status === 'online' ? 'bg-green-500' : 'bg-gray-500'}`}></div>
+      <div className="flex-1 space-y-0.5 overflow-y-auto pr-1">
+        {contactsData.map((contact) => (
+          <div 
+            key={contact.id} 
+            className={`flex items-center gap-2.5 px-2.5 py-1 rounded-lg cursor-pointer transition-colors ${
+              contact.id === 1 
+                ? 'bg-blue-500/10 text-blue-600 dark:text-white font-medium' 
+                : 'hover:bg-gray-200/60 dark:hover:bg-[#141b29]/50 text-gray-600 dark:text-gray-300'
+            }`}
+          >
+            <div className="relative shrink-0">
+              <img 
+                src={contact.avatar} 
+                alt={contact.name} 
+                className="w-8 h-8 rounded-full object-cover" 
+              />
+              <div className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-slate-50 dark:border-[#1e2738] ${contact.status === 'online' ? 'bg-green-500' : 'bg-gray-400 dark:bg-gray-500'}`}></div>
+            </div>
+            
+            <div className="flex-1 min-w-0">
+              <div className="flex justify-between items-baseline mb-0.5">
+                <h4 className="text-xs font-medium truncate text-gray-900 dark:text-white">{contact.name}</h4>
+                <span className="text-[8px] text-gray-400 dark:text-gray-400 shrink-0">{contact.time}</span>
+              </div>
+              <p className="text-[8px] text-gray-500 dark:text-gray-400 truncate">{contact.message}</p>
+            </div>
+          </div>
+        ))}
       </div>
-      
-      <div className="flex-1 min-w-0">
-        <div className="flex justify-between items-baseline mb-0.5">
-          <h4 className="text-xs font-medium truncate text-white">{contact.name}</h4>
-          <span className="text-[8px] text-gray-400 shrink-0">{contact.time}</span>
-        </div>
-        <p className="text-[8px] text-gray-400 truncate">{contact.message}</p>
-      </div>
-    </div>
-  ))}
-</div>
 
     </aside>
   );

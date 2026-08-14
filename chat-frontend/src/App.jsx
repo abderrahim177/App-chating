@@ -1,31 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PrimarySidebar from './components/PrimarySidebar';
 import SecondarySidebar from './components/SecondarySidebar';
 import MainChatView from './components/MainChatView';
 import ProfileDetailsSidebar from './components/ProfileDetailsSidebar';
 
 function App() {
-  const [isProfileSidebarOpen, setIsProfileSidebarOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   return (
-    // Main Container (flex row)
     <div className="flex h-screen w-screen overflow-hidden font-sans">
-      
-      {/* 1. L-Iyssar Al-Awwal (Icons) */}
-      <PrimarySidebar />
-      
-      {/* 2. L-Iyssar Al-Tani (Chats List) */}
+      <PrimarySidebar darkMode={darkMode} setDarkMode={setDarkMode} />
       <SecondarySidebar />
-      
-      {/* 3. L-Wast (Header, Chat) */}
-      {/* Pass a function to handle profile click */}
-      <MainChatView onProfileClick={() => setIsProfileSidebarOpen(true)} />
-      
-      {/* 4. L-Īman (Conditional Render) */}
-      {isProfileSidebarOpen && (
-        <ProfileDetailsSidebar onClose={() => setIsProfileSidebarOpen(false)} />
+      <MainChatView onProfileClick={() => setIsProfileOpen(true)} />
+      {isProfileOpen && (
+        <ProfileDetailsSidebar onClose={() => setIsProfileOpen(false)} />
       )}
-      
     </div>
   );
 }
