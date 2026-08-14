@@ -17,7 +17,7 @@ function ProfileDetailsSidebar({ onClose }) {
   ];
 
   return (
-    <aside className="w-72 bg-[#1e2738] text-[#e0e3e9] flex flex-col h-screen p-5 border-l border-gray-800/60 animate-slide-in-right overflow-y-auto shrink-0">
+    <aside className="w-66 bg-[#1e2738] text-[#e0e3e9] flex flex-col h-screen p-5 border-l border-gray-800/60 animate-slide-in-right overflow-y-auto shrink-0">
       
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
@@ -32,7 +32,7 @@ function ProfileDetailsSidebar({ onClose }) {
         <img 
           src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" 
           alt="Kailey" 
-          className="w-20 h-20 rounded-full mb-3 object-cover shadow-md" 
+          className="w-16 h-16 rounded-full mb-3 object-cover shadow-md" 
         />
         <h2 className="text-base font-bold text-white mb-0.5">Kailey</h2>
         <p className="text-xs text-gray-400">San Francisco, CA</p>
@@ -43,11 +43,11 @@ function ProfileDetailsSidebar({ onClose }) {
         <h4 className="text-gray-500 text-[10px] font-semibold uppercase tracking-wider mb-2">Info</h4>
         
         {profileInfo.map((item, index) => (
-          <div key={index} className="flex items-center gap-3 p-2.5 bg-[#141b29] rounded-lg border border-gray-800/40">
+          <div key={index} className="flex items-center gap-3 py-1 px-2.5 bg-[#141b29] rounded-lg border border-gray-800/40">
             <div className="text-blue-500 shrink-0">{item.icon}</div>
             <div className="min-w-0">
               <p className="text-[10px] text-gray-500">{item.title}</p>
-              <p className="text-xs font-medium text-gray-200 truncate">{item.text}</p>
+              <p className="text-[12px] font-medium text-gray-200 truncate">{item.text}</p>
             </div>
           </div>
         ))}

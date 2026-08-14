@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { BiConversation, BiUser, BiPhone, BiCog, BiSun, BiMoon } from 'react-icons/bi';
+import { BiConversation, BiUser, BiGroup,BiPhone, BiCog, BiSun, BiMoon } from 'react-icons/bi';
 
 function PrimarySidebar() {
   const [activeNav, setActiveNav] = useState('chats');
 
   const navItems = [
     { name: 'chats', icon: <BiConversation size={20} /> },
-    { name: 'contacts', icon: <BiUser size={20} /> },
+    { name: 'groups', icon: <BiGroup size={20} /> },
     { name: 'calls', icon: <BiPhone size={20} /> },
     { name: 'settings', icon: <BiCog size={20} /> },
   ];
 
   return (
-    <aside className="w-16 bg-[#181f30] text-[#8b9bb4] flex flex-col justify-between items-center py-4 border-r border-gray-800/60 h-screen shrink-0">
+    <aside className="w-13 bg-[#181f30] text-[#8b9bb4] flex flex-col justify-between items-center py-4 border-r border-gray-800/60 h-screen shrink-0">
       
       {/* Navigation Icons */}
       <div className="flex flex-col gap-3 w-full items-center">

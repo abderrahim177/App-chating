@@ -87,8 +87,8 @@ function MainChatView({ onProfileClick }) {
       </div>
 
       {/* Input Area (WhatsApp Style) - خفيف ومتكامل */}
-      <footer className="p-3 bg-[#1e2738] border-t border-gray-800/80 shrink-0">
-        <div className="flex items-center gap-2 bg-[#141b29] px-3 py-1.5 rounded-2xl border border-gray-800/60 focus-within:border-blue-500/60 transition-all">
+      <footer className="p-3  shrink-0">
+        <div className="flex items-center gap-2 mb-3 bg-[#202838] px-3 py-1 rounded-4xl border border-gray-800/60 focus-within:border-blue-500/60 transition-all">
           
           {/* File/Image Upload Buttons */}
           <div className="flex items-center gap-1 text-gray-400">
@@ -106,7 +106,7 @@ function MainChatView({ onProfileClick }) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Write a message..." 
-            className="w-full bg-transparent text-xs text-white placeholder-gray-500 focus:outline-none px-1"
+            className="w-full  text-xs text-white placeholder-gray-500 focus:outline-none px-1"
           />
 
           {/* Dynamic Send / Mic Icon (WhatsApp behaviour) */}
