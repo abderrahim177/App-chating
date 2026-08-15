@@ -34,7 +34,6 @@ function SecondarySidebar() {
     );
   }
 
-  // 3. الشاشة الرئيسية ديال المحادثات
   return (
     <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors">
       {/* Header */}
@@ -47,7 +46,7 @@ function SecondarySidebar() {
           type="button"
           title="Nouveau message"
           onClick={() => setCurrentView("newChat")}
-          className="p-2 rounded-lg transition-all duration-200 
+          className="cursor-pointer p-2 rounded-lg transition-all duration-200 
                    text-slate-700 hover:bg-slate-200/70 active:scale-95
                    dark:text-slate-200 dark:hover:bg-slate-800"
         >
