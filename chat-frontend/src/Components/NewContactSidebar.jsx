@@ -33,7 +33,7 @@ function NewContactSidebar({ onBack }) {
         <button
           type="button"
           title="Save Contact"
-          className="p-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white transition-colors shadow-xs"
+          className="cursor-pointer p-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white transition-colors shadow-xs"
         >
           <BiCheck size={20} />
         </button>
