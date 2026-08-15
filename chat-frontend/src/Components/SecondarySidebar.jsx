@@ -6,7 +6,8 @@ import {
   BiMessageSquareAdd,
 } from "react-icons/bi";
 import AmazanLogo from "./AmazanLogo";
-import NewChatSidebar from "./NewChatSidebar"; 
+import NewChatSidebar from "./NewChatSidebar";
+import NewContactSidebar from "./NewContactSidebar"; // <-- Import للكومبوننت الجديد
 
 const contactsData = [
   { id: 1, name: "Kailey", message: "Say My Name", time: "9:30", status: "online", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
@@ -15,12 +16,25 @@ const contactsData = [
 ];
 
 function SecondarySidebar() {
+  // Navigation State: 'chats' | 'newChat' | 'newContact'
   const [currentView, setCurrentView] = useState("chats");
 
-  if (currentView === "newChat") {
-    return <NewChatSidebar onBack={() => setCurrentView("chats")} />;
+  // 1. شاشة إضافة جهة اتصال جديدة
+  if (currentView === "newContact") {
+    return <NewContactSidebar onBack={() => setCurrentView("newChat")} />;
   }
 
+  // 2. شاشة New Chat
+  if (currentView === "newChat") {
+    return (
+      <NewChatSidebar
+        onBack={() => setCurrentView("chats")}
+        onNewContactClick={() => setCurrentView("newContact")}
+      />
+    );
+  }
+
+  // 3. الشاشة الرئيسية ديال المحادثات
   return (
     <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors">
       {/* Header */}
@@ -33,7 +47,7 @@ function SecondarySidebar() {
           type="button"
           title="Nouveau message"
           onClick={() => setCurrentView("newChat")}
-          className="cursor-pointer p-2 rounded-lg transition-all duration-200 
+          className="p-2 rounded-lg transition-all duration-200 
                    text-slate-700 hover:bg-slate-200/70 active:scale-95
                    dark:text-slate-200 dark:hover:bg-slate-800"
         >

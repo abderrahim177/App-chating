@@ -4,10 +4,10 @@ import {
   BiSearch, 
   BiUserPlus, 
   BiGroup, 
-  BiGroup as BiCommunity // أو استعمل أيقونة مناسبة
+  BiGroup as BiCommunity 
 } from "react-icons/bi";
 
-function NewChatSidebar({ onBack }) {
+function NewChatSidebar({ onBack, onNewContactClick }) {
   return (
     <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors animate-fadeIn">
       {/* Header مع السهم لرجوع */}
@@ -50,8 +50,11 @@ function NewChatSidebar({ onBack }) {
           </span>
         </div>
 
-        {/* New Contact */}
-        <div className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-200/60 dark:hover:bg-[#141b29]/50 transition-colors">
+        {/* New Contact - زدنا له الـ onClick هنا */}
+        <div 
+          onClick={onNewContactClick}
+          className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-200/60 dark:hover:bg-[#141b29]/50 transition-colors"
+        >
           <div className="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center shrink-0">
             <BiUserPlus size={20} />
           </div>
