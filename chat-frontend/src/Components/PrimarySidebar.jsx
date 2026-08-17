@@ -48,7 +48,7 @@ function PrimarySidebar({ darkMode, setDarkMode }) {
           <img 
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" 
             alt="My Profile" 
-            className="w-9 h-9 rounded-full object-cover" 
+            className="cursor-pointer w-9 h-9 rounded-full object-cover" 
           />
           <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white dark:border-[#181f30]"></div>
         </div>

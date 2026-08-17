@@ -1,19 +1,29 @@
 import { useState } from 'react';
-import { 
-  BiDotsVerticalRounded, 
-  BiPhone, 
-  BiCameraHome, 
-  BiPaperclip, 
-  BiSend, 
-  BiMicrophone, 
-  BiImageAdd 
-} from 'react-icons/bi';
+import axios from "axios";
+import { BiDotsVerticalRounded, BiPhone, BiCameraHome, BiPaperclip, BiSend, BiMicrophone, BiImageAdd } from 'react-icons/bi';
 import { CiImageOn } from 'react-icons/ci';
 import "../App.css";
 
 function MainChatView({ onProfileClick }) {
   const [message, setMessage] = useState('');
+  const [error , seterror] = useState(null)
+  const [loading , setloading] = useState(true)
 
+  const handelsubmit = async(e) => {
+    e.preventDefault()
+    setloading(true)
+    const token = sessionStorage.getItem('token')
+    const response = await axios.post('/',
+      message,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+    }
   return (
     <section className="flex-1 bg-slate-100 dark:bg-[#141b29] text-gray-800 dark:text-[#e0e3e9] flex flex-col h-screen overflow-hidden transition-colors">
       
@@ -54,7 +64,7 @@ function MainChatView({ onProfileClick }) {
       </header>
 
       {/* Chat Messages Area */}
-      <div className="flex-1 p-4 md:p-6 space-y-3 overflow-y-auto">
+      <div className=" flex-1 p-4 md:p-6 space-y-3 overflow-y-auto">
         <div className="text-center text-gray-400 dark:text-gray-500 text-[11px] font-semibold my-1">Today</div>
         
         {/* Received Message */}
@@ -111,11 +121,11 @@ function MainChatView({ onProfileClick }) {
 
           {/* Dynamic Send / Mic Icon */}
           {message.trim() ? (
-            <button type="button" className="p-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors shrink-0">
+            <button type="submit" className="p-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors shrink-0">
               <BiSend size={15} />
             </button>
           ) : (
-            <button type="button" className="p-2 text-gray-400 cursor-pointer hover:text-gray-700 dark:hover:text-white transition-colors shrink-0" title="Voice Message">
+            <button type="button" className="p-2 hover:bg-blue-700 bg-blue-600 rounded-full cursor-pointer hover:text-gray-100 text-white dark:text-white  transition-colors shrink-0" title="Voice Message">
               <BiMicrophone size={18} />
             </button>
           )}
