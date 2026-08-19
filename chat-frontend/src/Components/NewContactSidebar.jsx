@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import api from "../Api/axios";
 import {
   BiArrowBack,
   BiUser,
@@ -12,40 +13,42 @@ function NewContactSidebar({ onBack }) {
   const [syncPhone, setSyncPhone] = useState(false);
   const [data, setdata] = useState({
     name: "",
-    lastname : "",
-    username: "",
     phone: "",
   });
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(""); // 1. ترجيعها String باش تخزن ميساج الخطأ
+  const [loading, setLoading] = useState(false);
 
   const handelsubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post("/creatUser", {
-        data,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (err) {
-      console.error("Erreur API:", err.response?.data || err.message);
-      setErrorMsg(err.response?.data?.message ||"Impossible de créer l'événement. Vérifiez les champs.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+
+  try {
+    // استعمال api بدلاً من axios
+    const response = await api.post("/creatUser", data);
+
+    console.log("User created:", response.data);
+    
+    // إفرغ النموذج أو إغلاق الـ sidebar عند النجاح
+    setdata({ name: "", phone: "" });
+    if (onBack) onBack();
+
+  } catch (err) {
+    console.error("Erreur API:", err.response?.data || err.message);
+    setError(
+      err.response?.data?.message ||
+      "Impossible de créer le contact. Vérifiez les champs."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <aside className="w-60 bg-slate-50 dark:bg-[#1e2738] text-gray-800 dark:text-[#f8f9fb] flex flex-col p-3 h-screen border-r border-gray-200 dark:border-gray-800/60 shrink-0 transition-colors animate-fadeIn">
       {/* Header */}
       {error && (
-        <div className="p-3 bg-rose-50 border border-rose-100 rounded-xl text-rose-600 text-xs font-medium">
+        <div className="mb-3 p-3 bg-rose-50 border border-rose-100 rounded-xl text-rose-600 text-xs font-medium">
           {error}
         </div>
       )}
@@ -68,8 +71,9 @@ function NewContactSidebar({ onBack }) {
         <button
           type="submit"
           onClick={handelsubmit}
+          disabled={loading}
           title="Save Contact"
-          className="cursor-pointer p-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white transition-colors shadow-xs"
+          className="cursor-pointer p-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white transition-colors shadow-xs"
         >
           <BiCheck size={20} />
         </button>
@@ -87,41 +91,14 @@ function NewContactSidebar({ onBack }) {
             <div className="relative">
               <input
                 type="text"
-                alue={data.name}
+                value={data.name}
                 onChange={(e) => setdata({ ...data, name: e.target.value })}
                 placeholder="First name"
                 className="w-full bg-transparent text-xs text-gray-900 dark:text-white py-1 border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
-            <div className="relative">
-              <input
-                type="text"
-                value={data.lastname}
-                onChange={(e) => setdata({ ...data, lastname: e.target.value })}
-                placeholder="Last name"
-                className="w-full bg-transparent text-xs text-gray-900 dark:text-white py-1 border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
-              />
-            </div>
           </div>
         </div>
-
-        {/* Username */}
-        <div className="flex items-center gap-3">
-          <BiAt
-            className="text-gray-400 dark:text-gray-400 shrink-0"
-            size={20}
-          />
-          <div className="flex-1">
-            <input
-              type="text"
-              alue={data.username}
-                onChange={(e) => setdata({ ...data, username: e.target.value })}
-              placeholder="Username"
-              className="w-full bg-transparent text-xs text-gray-900 dark:text-white py-1 border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
-            />
-          </div>
-        </div>
-
         {/* Country & Phone */}
         <div className="flex items-start gap-3">
           <BiPhone
@@ -151,7 +128,7 @@ function NewContactSidebar({ onBack }) {
               </label>
               <input
                 type="tel"
-                alue={data.phone}
+                value={data.phone}
                 onChange={(e) => setdata({ ...data, phone: e.target.value })}
                 placeholder="0612345678"
                 className="w-full bg-transparent text-xs text-gray-900 dark:text-white py-1 border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"

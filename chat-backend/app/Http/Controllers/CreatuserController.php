@@ -12,7 +12,6 @@ class CreatuserController extends Controller
         $validateInfo = $request->validated();
         User::create([
             'name' => $validateInfo['name'],
-            'username' => $validateInfo['username'],
             'phone' => $validateInfo['phone'],
         ]);
 
