@@ -20,4 +20,8 @@ class CreatuserController extends Controller
             'message' => 'User Created successfuly',
         ], 201);
    }
+   public function Getusers(){
+        $users = User::all();
+        return response()->json($users , 200);
+   }
 }

@@ -14,6 +14,7 @@ Route::post('/login', [Authcontroller::class, 'Login']);
 // Protected Routes (Sanctum)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/creatUser' , [CreatuserController::class , 'Create']);
+    Route::get('/getUsers' , [CreatuserController::class , "Getusers"]);
     // التوثيق التلقائي للـ Private Channels فـ Reverb / Echo
     Broadcast::routes();
 

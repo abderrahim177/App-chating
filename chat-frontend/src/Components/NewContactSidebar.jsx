@@ -15,24 +15,19 @@ function NewContactSidebar({ onBack }) {
     name: "",
     phone: "",
   });
-  const [error, setError] = useState(""); // 1. ترجيعها String باش تخزن ميساج الخطأ
+  const [error, setError] = useState(""); 
   const [loading, setLoading] = useState(false);
 
   const handelsubmit = async (e) => {
   e.preventDefault();
   setError("");
   setLoading(true);
-
   try {
-    // استعمال api بدلاً من axios
     const response = await api.post("/creatUser", data);
 
     console.log("User created:", response.data);
-    
-    // إفرغ النموذج أو إغلاق الـ sidebar عند النجاح
     setdata({ name: "", phone: "" });
     if (onBack) onBack();
-
   } catch (err) {
     console.error("Erreur API:", err.response?.data || err.message);
     setError(
