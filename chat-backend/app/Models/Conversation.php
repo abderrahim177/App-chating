@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conversation extends Model
 {
-    //
+    public function users() {
+    return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
+    }
+
+    // كود باش تجيب آخر مساج فالحادثة بسرعة
+    public function latestMessage() {
+        return $this->hasOne(Message::class)->latestOfMany();
+    }
 }

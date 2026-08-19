@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BiSearch,
   BiArchive,
@@ -8,6 +8,7 @@ import {
 import AmazanLogo from "./AmazanLogo";
 import NewChatSidebar from "./NewChatSidebar";
 import NewContactSidebar from "./NewContactSidebar"; // <-- Import للكومبوننت الجديد
+import axios from "axios";
 
 const contactsData = [
   { id: 1, name: "Kailey", message: "Say My Name", time: "9:30", status: "online", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
@@ -18,7 +19,6 @@ const contactsData = [
 function SecondarySidebar() {
   // Navigation State: 'chats' | 'newChat' | 'newContact'
   const [currentView, setCurrentView] = useState("chats");
-
   // 1. شاشة إضافة جهة اتصال جديدة
   if (currentView === "newContact") {
     return <NewContactSidebar onBack={() => setCurrentView("newChat")} />;
